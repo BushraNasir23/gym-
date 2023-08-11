@@ -1,0 +1,57 @@
+{% include 'navbar.html' %}
+{% block content %}
+<section>
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+        <strong>Message :</strong>{{ message }}
+        <button type="button" class="close" data-dismis="alert" aria-label="Close"></button>
+        <span aria-hidden="true">&times;</span>
+
+    </div>
+    {% endfor %}
+
+    <h3>welcome to Gym Management System</h3>
+    {% if user.is_authenticated %}
+    <h3>Hello {{fname}}</h3>
+    <h4>You are successfully login</h4>
+      <a class="nav-link"  href="{% url 'signout' %}">Sign Out</a>
+    {% else %}
+      <a class="nav-link"  href="{% url 'signin' %}">Sign In</a>
+      <a class="nav-link"  href="{% url 'signup' %}">Sign Up</a>
+    {% endif %}
+    <div>
+    </div>
+    <hr>
+    <a class="btn btn-outline-info"  href="{% url 'create_member' %}">Add Member</a>
+    <a  class="btn btn-outline-secondary"  href="{% url 'report' %}">Check Report</a>
+    <hr>
+    <table class="table table-success table-striped-columns" >
+        <tr>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Fee Amount</th>
+            <th>Fee Date</th>
+            <th>Status</th>
+            <th>Update</th>
+            <th>Remove</th>
+        </tr>
+        {% for member in members %}
+        <tr>
+            <td>{{ member.name }}</td>
+            <td>{{ member.phone }}</td>
+            <td>{{ member.fee_amount }}</td>
+            <td>{{ member.fee_date }}</td>
+            <td>{{ member.status }}</td>
+            <td><a class="btn btn-outline-primary"  href="{% url 'update_member' member.id %}">Update</a></td>
+            <td><a class="btn btn-outline-danger"   href="{% url 'delete_member' member.id %}">Remove</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+</section>
+
+{% endblock %}
+
+
+

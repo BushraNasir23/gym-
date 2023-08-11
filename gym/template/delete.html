@@ -1,0 +1,21 @@
+{% include 'navbar.html' %}
+<style>
+  .container{
+
+     padding:100px;
+     margin-left:100px;
+     }
+</style>
+{% block content %}
+
+<div class="container">
+
+<p>Are you want to delete {{member}}</p>
+<form action="" method="POST">
+  {% csrf_token %}
+  <a class="btn btn-warning" href="{% url 'base' %}">Cancel</a>
+  <input type="submit" name="confirm" class="btn btn-danger">
+</div>
+</form>
+{% endblock  %}
+

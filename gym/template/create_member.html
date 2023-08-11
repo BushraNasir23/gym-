@@ -1,0 +1,14 @@
+{% include 'navbar.html' %}
+{% block content %}
+    <h1 class="text-center">Create Member</h1>
+
+<div class="container">
+    <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+        <div class="form-group">
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-outline-secondary">Save</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

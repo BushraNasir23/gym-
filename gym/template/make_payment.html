@@ -1,0 +1,12 @@
+{% include 'navbar.html' %}
+{% block content %}
+ <h1>Make Payment</h1>
+<p>Member :{{member.name}}</p>
+<form method="POST">
+    {% csrf_token %}
+    <label for="amount">Amount:</label>
+    <input type="number" name="amount">
+    <button type="submit">Pay</button>
+
+</form>
+{% endblock %}
